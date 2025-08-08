@@ -1,4 +1,4 @@
-# The CandleLit Codex
+# Note
 
 This project is still under construction.
 
