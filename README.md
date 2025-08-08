@@ -1,4 +1,4 @@
-# 🕯️ The CandleLit Codex
+# The CandleLit Codex
 
 This project is still under construction.
 
