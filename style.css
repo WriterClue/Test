@@ -1,102 +1,450 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <title>The Candlelit Codex</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Caveat&family=Rustic+Roadway&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <meta name="theme-color" content="#000000">
-  <meta name="color-scheme" content="dark">
-</head>
-<body>
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Caveat&display=swap');
+@import url('https://fonts.cdnfonts.com/css/rustic-roadway');
 
-  <!-- Loader Wrapper -->
-  <div id="loader-wrapper">
-    <div class="loader"></div>
-    <div class="loader-text">Writing the pages...</div>
-  </div>
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- Background Image -->
-  <div class="background-image observe-pop"></div>
+body {
+  font-family: 'Playfair Display', serif;
+  color: #fdfaf5;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  <!-- Sticky Contact Header -->
-  <header class="contact-card pop-once">
-    <div class="contact-left">
-      <img src="favicon.png" alt="Avatar" class="avatar">
-      <div class="info">
-        <h1 class="name">Clue Y. Encilis</h1>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="site-title">The Candlelit Codex</div>
-  </header>
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1527334134460-f21a05ef62f3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9nZ3klMjBmb3Jlc3R8ZW58MHwxfDB8fHww') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+}
 
-  <div id="header-trigger"></div>
+.background-image.visible {
+  opacity: 1;
+  transform: scale(1);
+}
 
-  <!-- Banner -->
-  <section class="banner observe-pop">
-    <img src="https://images.unsplash.com/photo-1543251698-10f13f004b0f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHdpbmRvd3xlbnwwfHwwfHx8MA%3D%3D" alt="Banner">
-  </section>
+/* Sticky Contact Section */
+.contact-card {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  transition: all 0.4s ease-in-out;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #d4af37;
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+}
 
-  <!-- Welcome Message -->
-  <section class="welcome-message observe-pop">
-    Welcome to The Codex ♡ a curated digital sanctuary where creativity, craftsmanship, and contemplation converge. Here, you'll find a harmonious blend of professional portfolio, thoughtful reflections, and creative experiments. Whether you're seeking insight, inspiration, or collaboration, you're invited to explore a collection that values depth, artistry, and meaningful work.
-  </section>
+.site-title {
+  font-family: 'Rustic Roadway', cursive;
+  font-size: 2.2rem;
+  transition: all ease-in-out;
+  color: #fffbe8;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(212, 175, 55, 0.5);
+}
 
-  <!-- Shelf Header -->
-  <section class="shelf-section observe-pop">
-    <h2 class="shelf-header">THE BOOKSHELF</h2>
-    <p class="shelf-subtitle">Choose a volume ✿ each book opens a world of its own.</p>
-  </section>
+.contact-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
-  <!-- Navigation Cards -->
-  <main class="card-wrapper">
-    <div class="container observe-pop">
-      <h2 class="title">Upon This</h2>
-      <p class="subtitle">A manuscript of memory and identity.</p>
-      <a href="about.html" class="btn">Enter</a>
-    </div>
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  object-fit: cover;
+}
 
-    <div class="container observe-pop">
-      <h2 class="title">The Atelier</h2>
-      <p class="subtitle">Where hands shape the unseen into form.</p>
-      <a href="portfolio.html" class="btn">Enter</a>
-    </div>
+.name {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: #fffbe8;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(212, 175, 55, 0.5);
+}
 
-    <div class="container observe-pop">
-      <h2 class="title">Chronicles</h2>
-      <p class="subtitle">A shelf of unfinished dreams & stray sparks.</p>
-      <a href="blog.html" class="btn">Enter</a>
-    </div>
+.info {
+  display: flex;
+  flex-direction: column;
+}
 
-   <div class="container observe-pop">
-      <h2 class="title">To be written</h2>
-      <p class="subtitle">One day...</p>
-      <a href="title.html" class="btn">Enter</a>
-    </div>
+.social-icons {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.7rem;
+}
 
-    <!--- Add more cards--->
+.social-icons a {
+  color: #fff8dd;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
 
-    <!----
-    <div class="container observe-pop">
-      <h2 class="title">Title</h2>
-      <p class="subtitle">subtitle.</p>
-      <a href="title.html" class="btn">Enter</a>
-    </div>
-      --->
+.social-icons a:hover {
+  color: #ffd700;
+}
 
-  </main>
+/* Shrinking header when scrolled */
+.contact-card.shrink {
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  border: 2px solid #d4af37;
+}
 
-  <script src="script.js"></script>
+/* Hide the left side (avatar, name, socials) */
+.contact-card.shrink .contact-left {
+  display: none;
+}
 
-</body>
-</html>
+/* Style the site title when shrunk */
+.contact-card.shrink .site-title {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.3rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+/* Banner Section */
+.banner {
+  margin: 2rem auto 0 auto;
+  max-width: 800px;
+  width: 90%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #d4af37;
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.banner img {
+  width: 100%;
+  display: block;
+}
+
+/* Welcome Message - Torn Lined Paper Style */
+.welcome-message {
+  width: 90%;
+  max-width: 550px;
+  margin: 2rem auto;
+  padding: 1.25rem 1.25rem 2rem;
+  background: repeating-linear-gradient(to bottom, #fffdf5, #fffdf5 24px, #eae7dc 25px);
+  color: #2a2a2a;
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: left;
+  font-family: 'Playfair Display', serif;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-message::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: radial-gradient(circle at 10% 100%, transparent 15%, #fffdf5 16%) repeat-x;
+  background-size: 20px 20px;
+}
+
+/* Shelf Section Header */
+.shelf-section {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #d4af37;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  padding: 1rem 2rem;
+  margin: 3rem auto 2rem;
+  text-align: center;
+  max-width: 900px;
+  border-radius: 20px;
+}
+
+.shelf-header {
+  font-family: 'Rustic Roadway', cursive;
+  font-size: 2.2rem;
+  color: #fffbe8;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.shelf-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff9e6;
+  margin-top: 0.4rem;
+  font-style: italic;
+  line-height: 1.,6;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: normal;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation Cards styled as vertical books */
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 190px; /* wider for desktop */
+  min-height: 280px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.7), 0 0 50px rgba(212, 175, 55, 0.5);
+}
+
+.title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem; /* larger but still one line */
+  margin-bottom: 0.3rem;
+  color: #fff9e2;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: visible;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #fdf6d7;
+  margin-bottom: auto;
+}
+
+.btn {
+  background: #f4e3cf;
+  color: #2a2a2a;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  box-shadow: 0 0 10px rgba(244, 227, 207, 0.4), 0 0 20px rgba(244, 227, 207, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px rgba(244, 227, 207, 0.6), 0 0 30px rgba(244, 227, 207, 0.4);
+}
+
+/* Invisible trigger element for scroll observer */
+#header-trigger {
+  height: 1px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contact-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .site-title {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .contact-left {
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .info {
+    align-items: center;
+  }
+
+  .card-wrapper {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .shelf-section {
+    padding: 1rem;
+  }
+
+  .shelf-header {
+    font-size: 1.8rem;
+  }
+
+  .shelf-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* Loader Wrapper Styles */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnBjeTJoNjUwOXN3aG1vaDBjejc5YTc3eGE3MWF2eTg5dHVuMGtjYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rdsYO4Wp1Lmouey1Va/giphy.gif') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Loader Animation */
+.loader {
+  --c1: #673b14;
+  --c2: #f8b13b;
+  width: 40px;
+  height: 80px;
+  border-top: 4px solid var(--c1);
+  border-bottom: 4px solid var(--c1);
+  background: linear-gradient(90deg, var(--c1) 2px, var(--c2) 0 5px, var(--c1) 0) 50% / 7px 8px no-repeat;
+  display: grid;
+  overflow: hidden;
+  animation: l5-0 2s infinite linear;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  width: 75%;
+  height: calc(50% - 4px);
+  margin: 0 auto;
+  border: 2px solid var(--c1);
+  border-top: 0;
+  box-sizing: content-box;
+  border-radius: 0 0 40% 40%;
+  -webkit-mask: linear-gradient(#000 0 0) bottom / 4px 2px no-repeat, linear-gradient(#000 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  background:
+    linear-gradient(var(--d, 0deg), var(--c2) 50%, #0000 0) bottom / 100% 205%,
+    linear-gradient(var(--c2) 0 0) center / 0 100%;
+  background-repeat: no-repeat;
+  animation: inherit;
+  animation-name: l5-1;
+}
+
+.loader::after {
+  transform-origin: 50% calc(100% + 2px);
+  transform: scaleY(-1);
+  --s: 3px;
+  --d: 180deg;
+}
+
+@keyframes l5-0 {
+  80% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(0.5turn)
+  }
+}
+
+@keyframes l5-1 {
+  10%, 70% {
+    background-size: 100% 205%, var(--s, 0) 100%
+  }
+  70%, 100% {
+    background-position: top, center
+  }
+}
+
+/* Flickering Text */
+.loader-text {
+  margin-top: 1rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  color: #fff7e0;
+  animation: flicker 1s infinite;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px #000;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Pop animation (loaded once for sticky header) */ 
+.pop-once { 
+opacity: 0; 
+transform: translateY(40px); 
+animation: popFade 1s ease forwards; 
+animation-delay: 0.3s; }
+
+@keyframes popFade { 
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+}
+
+/* Scroll-triggered pop-up animation */ 
+
+.observe-pop { 
+  opacity: 0; 
+  transform: translateY(40px);
+  transition: all 0.6s ease, 
+  transform 0.6s ease
+}
+
+.observe-pop.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
