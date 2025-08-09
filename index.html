@@ -23,17 +23,19 @@
   <div class="background-image observe-pop"></div>
 
   <!-- Sticky Contact Header -->
-  <header class="contact-card pop-once">
+  <header class="contact-card pop-once hide-before-load">
     <div class="contact-left">
       <img src="favicon.png" alt="Avatar" class="avatar">
       <div class="info">
+        <div class="label name-label"><strong>Name:</strong></div>
         <h1 class="name">Clue Y. Encilis</h1>
+        <div class="label socials-label"><strong>Socials:</strong></div>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="mailto:youremail@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
@@ -83,20 +85,16 @@
       <p class="subtitle">One day...</p>
       <a href="title.html" class="btn">Enter</a>
     </div>
-
-    <!--- Add more cards--->
-
-    <!----
-    <div class="container observe-pop">
-      <h2 class="title">Title</h2>
-      <p class="subtitle">subtitle.</p>
-      <a href="title.html" class="btn">Enter</a>
-    </div>
-      --->
-
+    <!--- Add more cards as needed --->
   </main>
 
+  <script>
+    // Loader hide/show logic
+    window.addEventListener("load", function() {
+      document.getElementById("loader-wrapper").style.display = "none";
+      document.querySelector(".contact-card").classList.remove("hide-before-load");
+    });
+  </script>
   <script src="script.js"></script>
-
 </body>
 </html>
