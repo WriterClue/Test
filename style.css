@@ -303,12 +303,17 @@ body {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-  .contact-card {
+@media (max-width: 900px) {
+  .banner-welcome-wrapper {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center;
+    gap: 1.5rem;
   }
+  .banner, .welcome-message {
+    max-width: 95vw;
+    width: 100%;
+  }
+}
 
   .site-title {
     order: -1;
